@@ -3,6 +3,13 @@ import time
 import pytest
 from playwright.sync_api import Playwright, sync_playwright, expect
 
+try:
+    EMAIL = os.environ['EMAIL']
+    PASSWORD = os.environ['PASSWORD']
+except KeyError:
+    import utils.secret_config
+    EMAIL = utils.secret_config.EMAIL
+    PASSWORD = utils.secret_config.PASSWORD
 
 def test_login_to_acc(page) -> None:
     page.goto("https://platform.chicaga.ru/")
@@ -11,9 +18,9 @@ def test_login_to_acc(page) -> None:
     page.locator("#header").get_by_text("Войти").click()
     page.locator("#loginForm").get_by_placeholder("Электронный адрес").click()
     page.locator("#loginForm").get_by_placeholder("Электронный адрес").click()
-    page.locator("#loginForm").get_by_placeholder("Электронный адрес").fill(os.environ['EMAIL'])
+    page.locator("#loginForm").get_by_placeholder("Электронный адрес").fill(EMAIL)
     page.locator("#loginForm").get_by_placeholder("Электронный адрес").press("Tab")
-    page.locator("#loginForm").get_by_placeholder("Пароль").fill(os.environ['PASSWORD'])
+    page.locator("#loginForm").get_by_placeholder("Пароль").fill(PASSWORD)
     page.locator("#loginForm").get_by_text("Войти").click()
     page.get_by_text("Закрыть").click()
 
