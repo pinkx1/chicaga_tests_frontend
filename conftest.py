@@ -1,16 +1,9 @@
 import os
-
 import pytest
 from playwright.sync_api import Playwright
 
-try:
-    EMAIL = os.environ['EMAIL']
-    PASSWORD = os.environ['PASSWORD']
-except KeyError:
-    import utils.secret_config
-    EMAIL = utils.secret_config.EMAIL
-    PASSWORD = utils.secret_config.PASSWORD
-
+PASSWORD = os.environ['PASSWORD']
+EMAIL = os.environ['EMAIL']
 
 
 @pytest.fixture(scope="session")
