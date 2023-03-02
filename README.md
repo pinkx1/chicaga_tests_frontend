@@ -1,3 +1,3 @@
-# playwright
+# Playwright
 
 Тыкаю палкой плейврайт
